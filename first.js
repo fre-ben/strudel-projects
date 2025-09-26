@@ -9,7 +9,7 @@ KICK$: s("bd*4").bank("TR909").room(0.2).duckorbit(2).duckattack(0.2).duckdepth(
 HIHAT$: s("[- hh]*4").bank("TR909").gain("[- <0.25 0.75>]*4").speed("1 | 1.1 | 1.2 ").room(0.2).postgain(DRUMS ? 1 : 0);
 SNARE$: s("<[- sd]*2 [- sd]*2 [- sd]*2 [- - sd sd]*4>").bank("TR909").gain("[- <0.75 0.6>]*2").speed("0.8 | 0.75").room(0.27).postgain(DRUMS ? 1 : 0);
 
-PERC$: s("<- - - crow>").speed(0.2).room(2).roomsize(5).degrade().postgain(0.3);
+PERC$: s("<- - - crow>").speed(0.2).room(2).roomsize(5).degradeBy(0.3).postgain(0.3);
 
 KALIMBA$: sound("[gm_kalimba gm_kalimba:4]").note("<c3, [c3 e4] e3 [f3 f4 f5] >")
   .euclid("<3 5>", "<8 8>")
@@ -23,6 +23,7 @@ KALIMBA$: sound("[gm_kalimba gm_kalimba:4]").note("<c3, [c3 e4] e3 [f3 f4 f5] >"
   .crush("[2 5 16 5 16 16 5]")
   .gain("0.8 0 0.8 0 0.7 0.5 0 0")
   .orbit(2)
+  
   .postgain(MELODY ? 0.7 : 0)
   ._pianoroll();
 
