@@ -11,6 +11,8 @@ $: s("breaks/2").fit()
   .almostNever(ply("2 | 4"))
   .distort("2:0.4")
   .orbit(2)
+  //.jux(rev)
+  //.postgain(0.7)
   .color("yellow")._scope()
 
 $: s("white!8").decay(0.08).gain(.35)
