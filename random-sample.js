@@ -5,9 +5,9 @@ samples('github:ash3rw/strudel-samples')
 setcpm(130/4)
 
 const voxPatterns = [
-  "<49 77 99 104 72>*4",
-  "<49 62 99 101 72>*4",
-  "<42 77 201 104 72>*4",
+  "<49 77 99 104 72>*2",
+  "<49 62 99 101 72>*2",
+  "<42 77 201 104 72>*2",
    ]
 
 VOX$: s("vox").fit()
@@ -18,13 +18,24 @@ VOX$: s("vox").fit()
   .slow(2)
   .almostNever(x => x.ply("2 | 4"))
   .almostNever(x => x.speed("0.3 | 0.71"))
-  .room(1.5).roomsize(2)
-  .distort("3:0.26")
+  .room(2.5).roomsize("[2 2 4 2]/2")
+  .distort("3:0.26 | [6:0.14 3:0.24] | [3:0.22 4:0.12]")
   .hpf(500)
   .orbit(2)
-  // .jux(rev)
   .postgain(.8)
   .color("hotpink")._scope()
+
+BASS$: s("sawtooth, supersaw")
+  .seg(8)
+  .n("<-14@5 -14.5@3>*8")
+  .scale("C:major") 
+  .lpf(slider(200, 200, 2300, 100))
+  .distort("2:0.7")
+  .orbit(2)
+  .jux(rev)
+  .postgain(saw2.range(.2, .8))
+  .color("chocolate")._scope()
+  
 
 SIDECHAIN$: s("bd:2!2").bank("RolandTR909")
   .duck("2").duckatt(.4).duckdepth(0.8)
@@ -38,17 +49,18 @@ KICK$: stack(
   .speed(0.8)
   .room(1.4).roomsize(1.2)
   .distort("4:0.35")
-  .color("darkblue")._punchcard(),
+  .color("blue"),
   s("bd:0!2").bank("RolandTR909")
   .sometimesBy("0.21", x => x.ply("2 | 4"))
   .room(1.4).roomsize(1.3)
   .distort("4:0.35")
   .lpf(300)
   .postgain(.6)
-  .color("darkblue")._punchcard()
+  .color("yellow")
 )
   // .crush(saw2.range(0,4).fast(2))
   .postgain(KICK_PLAYING ? 1 : 0)
+  ._punchcard()
 
   
 SNARE$: s("[- cp]*2").bank("RolandTR909")
@@ -67,12 +79,6 @@ HAT$: s("[- hh:4]*4").bank("RolandTR909")
   .speed(0.7)
   .distort("2:0.2")
   .room(1.2)
-  .color("blue")._spectrum({height: 60})
-BASS$: s("sawtooth, supersaw")
-  .seg(8)
-  .n("<-14@5 -14.5@3>*8")
-  .scale("C:major") 
-  .lpf(slider(200, 200, 1500, 100))
-  .distort("2:0.7")
-  .orbit(2)
-  .postgain(saw2.range(.2, 1))
+  .color("gray")
+  ._spectrum({height: 60})
+
