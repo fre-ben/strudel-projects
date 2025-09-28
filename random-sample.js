@@ -46,13 +46,13 @@ const KICK_PLAYING = 1;
 
 KICK$: stack(
   s("bd:1!2").bank("RolandTR909")
-  .sometimesBy("0.21", x => x.ply("2 | 4 "))
+  .sometimesBy("0.21", x => x.ply("2 | 4 ").gain(".6 | .78"))
   .speed(0.8)
   .room(1.4).roomsize(1.2)
   .distort("4:0.35")
   .color("blue"),
   s("bd:0!2").bank("RolandTR909")
-  .sometimesBy("0.21", x => x.ply("2 | 4"))
+  .sometimesBy("0.21", x => x.ply("2 | 4").gain(".6 | .78"))
   .room(1.4).roomsize(1.3)
   .distort("4:0.35")
   .lpf(300)
@@ -61,18 +61,19 @@ KICK$: stack(
 )
   // .crush(saw2.range(0,4).fast(2))
   // .fast(2)
-  // .slow(4) // + slow(2) cp
+ //  .slow(4) // + slow(2) cp
+  .note("[c2 cb2 cb2 c2]/2")
   .postgain(KICK_PLAYING ? 1 : 0)
   ._punchcard()
 
   
 SNARE$: s("[- cp]*2").bank("RolandTR909")
-  .sometimesBy("0.22", x => x.ply("2 | 4"))
+  .sometimesBy("0.22", x => x.ply("2 | 4").gain(".85 | .79"))
   .speed("0.9 | 0.78 | 0.86")
   .room(1.6)
   .distort("4:0.35")
   .postgain(.87)
- //.slow(2) // + slow(4) bd
+ // .slow(2) // + slow(4) bd
   .color("salmon")._punchcard()
 
 HAT$: s("[- hh:4]*4").bank("RolandTR909")
