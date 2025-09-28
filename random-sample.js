@@ -43,8 +43,6 @@ SIDECHAIN$: s("bd:2!2").bank("RolandTR909")
   .duck("2").duckatt(.4).duckdepth(0.8)
   .postgain(0)
 
-const KICK_PLAYING = 1;
-
 KICK$: stack(
   s("bd:1!2").bank("RolandTR909")
   .sometimesBy("0.21", x => x.ply("2 | 4 ").gain(".6 | .78"))
@@ -64,7 +62,6 @@ KICK$: stack(
   // .fast(2)
  //  .slow(4) // + slow(2) cp
   .note("[c2 cb2 cb2 c2]/2")
-  .postgain(KICK_PLAYING ? 1 : 0)
   ._punchcard()
 
   
