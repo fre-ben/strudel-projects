@@ -28,7 +28,8 @@ VOX$: s("vox").fit()
 BASS$: s("sawtooth, supersaw")
   .seg(8)
   .n("<-14@5 -14.5@3>*8")
-  .scale("C:major") 
+   .scale("C:major")
+  // .scale("<C:major C:major C:major, A:major F:major E:major>/2") 
   .lpf(slider(200, 200, 2300, 100))
   .distort("2:0.7")
   .orbit(2)
@@ -59,6 +60,8 @@ KICK$: stack(
   .color("yellow")
 )
   // .crush(saw2.range(0,4).fast(2))
+  // .fast(2)
+  // .slow(4) // + slow(2) cp
   .postgain(KICK_PLAYING ? 1 : 0)
   ._punchcard()
 
@@ -69,6 +72,7 @@ SNARE$: s("[- cp]*2").bank("RolandTR909")
   .room(1.6)
   .distort("4:0.35")
   .postgain(.87)
+ //.slow(2) // + slow(4) bd
   .color("salmon")._punchcard()
 
 HAT$: s("[- hh:4]*4").bank("RolandTR909")
